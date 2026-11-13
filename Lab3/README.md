@@ -1,4 +1,6 @@
 Codecademy Screenshots<br>
+<img width="1536" height="912" alt="image" src="https://github.com/user-attachments/assets/7b2cda2a-adf1-4bf1-998e-353448c40b4a" />
+<img width="1536" height="912" alt="image" src="https://github.com/user-attachments/assets/6e342682-8060-4cd3-9542-50bcebe4aeaf" />
 
 
 
