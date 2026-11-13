@@ -1,4 +1,4 @@
-Codecademy Screenshots\
+Codecademy Screenshots \
 
 
-html resume screenshots\
+html resume screenshots \
