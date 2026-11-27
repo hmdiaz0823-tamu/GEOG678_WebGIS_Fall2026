@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hannah Diaz First Web Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+  </head>
+  <body>
+    <div id="mapid" style = "height: 500px"></div>
+
+    <script>
+         var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+        L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+            attribution: '© <a href="https://www.mapbox.com/about/maps/">Mapbox<a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong><a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a><strong>',
+            tileSize: 512,
+            maxZoom: 18,
+            zoomOffset: -1,
+            id: 'mapbox/streets-v11',
+            accessToken: 'pk.eyJ1IjoiaG1kaWF6LTA4MjMiLCJhIjoiY213eWh5eDl5MGNvNjMwcG43aDBiY2FhbyJ9.cdTDyvNx1smQtpzgY78Aqg'
+        }).addTo(mymap);
+
+        mymap.locate({setView: true, maxZoom: 16});
+
+        var circle = L.circle([26.21, -98.00], {
+            color: 'red',
+            fillColor: '#f03',
+            fillOpacity: 0.5,
+            radius: 100
+        }).addTo(mymap);
+
+        var parkIcon = L.icon({
+	        iconUrl: 'park-icon.png',
+	        iconSize:     [25, 50], // size of the icon
+	        iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+	        popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+        });
+
+        var marker = L.marker([26.21, -97.99], {icon: parkIcon}).addTo(mymap);
+
+        var waterIcon = L.icon({
+	        iconUrl: 'water-icon.png',
+	        iconSize:     [25, 50], // size of the icon
+	        iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+	        popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+        });
+
+        var marker = L.marker([26.212, -98.03], {icon: waterIcon}).addTo(mymap);
+        
+        function onMapClick(e) {
+            alert("You clicked the map at " + e.latlng);
+        }
+
+        mymap.on('click', onMapClick);
+
+    </script>
+  </body>
+</html>
