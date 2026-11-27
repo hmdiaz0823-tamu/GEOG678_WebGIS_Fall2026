@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Lab 5 Leaflet Tutorial 2</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    
+        <style>
+            body {
+	        padding: 0;
+	        margin: 0;
+            }
+            html, body, #map {
+	        height: 100vh;
+	        width: 100vw;
+            }
+        </style>
+
+  </head>
+
+  <body>
+    <div id="mapid" style = "height: 500px"></div>
+
+    <script>
+        var mymap = L.map('mapid').fitWorld();
+
+        L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+            attribution: '© <a href="https://www.mapbox.com/about/maps/">Mapbox<a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong><a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a><strong>',
+            maxZoom: 18,
+            id: 'mapbox/streets-v11',
+            accessToken: 'pk.eyJ1IjoiaG1kaWF6LTA4MjMiLCJhIjoiY213eWh5eDl5MGNvNjMwcG43aDBiY2FhbyJ9.cdTDyvNx1smQtpzgY78Aqg'
+        }).addTo(mymap);
+
+        mymap.locate({setView: true, maxZoom: 16});
+
+
+        function onLocationFound(e) {
+	        var radius = e.accuracy;
+
+	        L.marker(e.latlng).addTo(mymap)
+		    .bindPopup("You are within " + radius + " meters from this point").openPopup();
+
+	        L.circle(e.latlng, {radius}).addTo(mymap);
+        }
+
+        mymap.on('locationfound', onLocationFound);
+
+        function onLocationError(e) {
+	        alert(e.message);
+        }
+
+        mymap.on('locationerror', onLocationError);
+    </script>
+
+  </body>
+</html>
